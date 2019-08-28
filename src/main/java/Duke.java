@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
-
+import java.util.regex.*;
 
 public class Duke {
 
@@ -49,8 +50,32 @@ public class Duke {
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println(taskList.get(doneIndex).toString());
                 System.out.println(horizontalLine);
-            } else if (input.length() > 0){ // only add non-empty strings
-                addItem(input);
+            } else if (input.startsWith("todo")) {
+                String desc = input.substring(4);
+                if (desc.length() == 0) {
+                    printFormattedLine("Todo cannot be empty");
+                    continue;
+                }
+                addItem(new Todo(desc));
+            } else if (input.startsWith("deadline")) {
+                String temp  = input.substring(8);
+                String[] tokens = temp.split("/by");
+                if (tokens.length != 2) {
+                    System.out.println("Invalid format");
+                    continue;
+                }
+                addItem(new Deadline(tokens[0],tokens[1]));
+
+            } else if (input.startsWith("event")) {
+                String temp  = input.substring(5);
+                String[] tokens = temp.split("/at");
+                if (tokens.length != 2) {
+                    System.out.println("Invalid format");
+                    continue;
+                }
+                addItem(new Event(tokens[0],tokens[1]));
+            }  else { // only add non-empty strings
+                System.out.println("Invalid command");
             }
         }
 
@@ -64,9 +89,10 @@ public class Duke {
         System.out.println(horizontalLine);
     }
 
-    private static void addItem(String item) {
-        taskList.add(new Task(item));
+    private static void addItem(Task item) {
+        taskList.add(item);
         printFormattedLine("added: " + item);
+
     }
 
     private static void printList() {

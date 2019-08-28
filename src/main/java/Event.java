@@ -1,10 +1,13 @@
 public class Event extends Task{
-    Event(String description) {
+    private String dueDate = "";
+
+    Event(String description, String dueDate) {
         super(description);
+        this.dueDate = dueDate;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString();
+        return "[E]" + super.toString() + "(at: " + this.dueDate + ")";
     }
 }
