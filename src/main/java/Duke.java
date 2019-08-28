@@ -52,7 +52,7 @@ public class Duke {
                 System.out.println(horizontalLine);
             } else if (input.startsWith("todo")) {
                 String desc = input.substring(4);
-                if (desc.length() == 0) {
+                if (desc.isBlank()) {
                     printFormattedLine("Todo cannot be empty");
                     continue;
                 }
@@ -60,17 +60,17 @@ public class Duke {
             } else if (input.startsWith("deadline")) {
                 String temp  = input.substring(8);
                 String[] tokens = temp.split("/by");
-                if (tokens.length != 2) {
-                    System.out.println("Invalid format");
+                if (tokens.length != 2 || tokens[0].isBlank() || tokens[1].isBlank()) {
+                    System.out.println("Invalid format, use \"deadline <Description> /by <Date>\"");
                     continue;
                 }
                 addItem(new Deadline(tokens[0],tokens[1]));
 
-            } else if (input.startsWith("event")) {
+            } else if (input.startsWith("event") ) {
                 String temp  = input.substring(5);
                 String[] tokens = temp.split("/at");
-                if (tokens.length != 2) {
-                    System.out.println("Invalid format");
+                if (tokens.length != 2 || tokens[0].isBlank() || tokens[1].isBlank()) {
+                    System.out.println("Invalid format, use \"event <Description> /on <Date>\"");
                     continue;
                 }
                 addItem(new Event(tokens[0],tokens[1]));
