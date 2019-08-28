@@ -7,8 +7,12 @@ public class Duke {
 
     private static final String horizontalLine = "____________________________________________________________";
     private static ArrayList<Task> taskList = new ArrayList<Task>();
+    private static StorageHandler storage;
 
     public static void main(String[] args) {
+
+        storage = new StorageHandler();
+        taskList = storage.getData();
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -50,6 +54,7 @@ public class Duke {
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println(taskList.get(doneIndex).toString());
                 System.out.println(horizontalLine);
+
             } else if (input.startsWith("todo")) {
                 String desc = input.substring(4);
                 if (desc.isBlank()) {
@@ -70,13 +75,15 @@ public class Duke {
                 String temp  = input.substring(5);
                 String[] tokens = temp.split("/at");
                 if (tokens.length != 2 || tokens[0].isBlank() || tokens[1].isBlank()) {
-                    System.out.println("Invalid format, use \"event <Description> /on <Date>\"");
+                    System.out.println("Invalid format, use \"event <Description> /at <Date>\"");
                     continue;
                 }
                 addItem(new Event(tokens[0],tokens[1]));
             }  else { // only add non-empty strings
                 System.out.println("Invalid command");
             }
+            storage.saveData(taskList);
+
         }
 
 
