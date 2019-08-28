@@ -26,6 +26,12 @@ public class Duke {
 
         while (true) {
             input = scanner.nextLine();
+
+            // remove all occurrences of | as it is a separator for file storage
+            input = input.replace("|","");
+
+
+
             if (input.equals("bye")) {
                 printFormattedLine("Bye. Hope to see you again soon!");
                 return;
