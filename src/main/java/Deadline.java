@@ -1,18 +1,22 @@
+import java.util.Date;
+
 public class Deadline extends Task{
 
-    private String dueDate = "";
+    private String dueDateString = "";
+    private Date dueDate = null;
     Deadline(String description,String dueDate) {
         super(description);
-        this.dueDate = dueDate;
+        this.dueDateString = dueDate;
+        this.dueDate = Task.parseDateString(dueDateString);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + this.dueDate + ")";
+        return "[D]" + super.toString() + "(by: " + this.dueDateString + ")";
     }
 
     @Override
     public String toStorageString() {
-        return "D|" + super.toStorageString() + "|" + this.dueDate;
+        return "D|" + super.toStorageString() + "|" + this.dueDateString;
     }
 }

@@ -1,7 +1,17 @@
-
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Task {
+
+
+
+    protected String description = "";
+    protected boolean isCompleted = false;
+
+    Task(String description) {
+        this.description = description;
+    }
 
     public static Task parseStorageString(String s) {
         String[] tokens = s.split("\\|");
@@ -31,11 +41,15 @@ public class Task {
 
     }
 
-    protected String description = "";
-    protected boolean isCompleted = false;
+    static Date parseDateString(String dateString) {
+        String[] formats = {"d/M/y HHmm"};
+        for (String format : formats) {
+            try {
+                return new SimpleDateFormat(format).parse(dateString);
+            } catch(ParseException ignored) {}
+        }
 
-    Task(String description) {
-        this.description = description;
+        return null;
     }
 
     public String toString() {

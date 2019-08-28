@@ -72,7 +72,7 @@ public class Duke {
                 String temp  = input.substring(8);
                 String[] tokens = temp.split("/by");
                 if (tokens.length != 2 || tokens[0].isBlank() || tokens[1].isBlank()) {
-                    System.out.println("Invalid format, use \"deadline <Description> /by <Date>\"");
+                    System.out.println("Invalid format, use \"deadline <Description> /by <Date|dd/MM/yyyy hhmm>\"");
                     continue;
                 }
                 addItem(new Deadline(tokens[0],tokens[1]));
@@ -81,7 +81,7 @@ public class Duke {
                 String temp  = input.substring(5);
                 String[] tokens = temp.split("/at");
                 if (tokens.length != 2 || tokens[0].isBlank() || tokens[1].isBlank()) {
-                    System.out.println("Invalid format, use \"event <Description> /at <Date>\"");
+                    System.out.println("Invalid format, use \"event <Description> /at <Date|dd/MM/yyyy hhmm>\"");
                     continue;
                 }
                 addItem(new Event(tokens[0],tokens[1]));
