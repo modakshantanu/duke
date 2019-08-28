@@ -4,8 +4,8 @@
 public class Task {
 
 
-    private String description = "";
-    private boolean isCompleted = false;
+    protected String description = "";
+    protected boolean isCompleted = false;
 
     Task(String description) {
         this.description = description;

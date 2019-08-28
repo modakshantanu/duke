@@ -22,9 +22,7 @@ public class Duke {
         while (true) {
             input = scanner.nextLine();
             if (input.equals("bye")) {
-                System.out.println(horizontalLine);
-                System.out.println("Bye. Hope to see you again soon!");
-                System.out.println(horizontalLine);
+                printFormattedLine("Bye. Hope to see you again soon!");
                 return;
             } else if (input.startsWith("list")) {
                 printList();
@@ -35,17 +33,13 @@ public class Duke {
                     doneIndex =  Integer.parseInt(input.substring(input.lastIndexOf(" ") + 1)) - 1;
                 } catch (Exception e) {
                     // Error if the string after "done" is not an integer
-                    System.out.println(horizontalLine);
-                    System.out.println("That task doesn't exist");
-                    System.out.println(horizontalLine);
+                    printFormattedLine("That task doesn't exist");
                     continue;
                 }
 
                 // error handling if the index is not in the array
                 if (doneIndex < 0 || doneIndex >= taskList.size()) {
-                    System.out.println(horizontalLine);
-                    System.out.println("That task doesn't exist");
-                    System.out.println(horizontalLine);
+                    printFormattedLine("That task doesn't exist");
                     continue;
                 }
 
@@ -63,11 +57,16 @@ public class Duke {
 
     }
 
+    // Prints one String between 2 horizontal Lines
+    private static void printFormattedLine(String line) {
+        System.out.println(horizontalLine);
+        System.out.println(line);
+        System.out.println(horizontalLine);
+    }
+
     private static void addItem(String item) {
         taskList.add(new Task(item));
-        System.out.println(horizontalLine);
-        System.out.println("added: " + item);
-        System.out.println(horizontalLine);
+        printFormattedLine("added: " + item);
     }
 
     private static void printList() {
@@ -79,4 +78,5 @@ public class Duke {
         }
         System.out.println(horizontalLine);
     }
+
 }
