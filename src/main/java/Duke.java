@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -85,7 +86,19 @@ public class Duke {
                     continue;
                 }
                 addItem(new Event(tokens[0],tokens[1]));
-            }  else { // only add non-empty strings
+            }  else if (input.startsWith("find")) {
+                String temp = input.substring(5);
+                String[] tokens = temp.split(" ");
+                if (tokens.length != 1) {
+                    System.out.println("Keyword must be exactly 1 word with no spaces");
+                    System.out.println(  Arrays.toString(tokens));
+                    continue;
+                }
+
+                printContainingKeyword(tokens[0]);
+
+            }   else { // only add non-empty strings
+
                 System.out.println("Invalid command");
             }
             storage.saveData(taskList);
@@ -102,10 +115,11 @@ public class Duke {
         System.out.println(horizontalLine);
     }
 
+
+
     private static void addItem(Task item) {
         taskList.add(item);
         printFormattedLine("added: " + item);
-
     }
 
     private static void printList() {
@@ -114,6 +128,25 @@ public class Duke {
         // Print each element of list with numbering
         for (int i = 0; i < taskList.size(); i++) {
             System.out.println(i+1 + ". " + taskList.get(i).toString());
+        }
+        System.out.println(horizontalLine);
+    }
+
+    private static void printContainingKeyword(String keyword) {
+        System.out.println(horizontalLine);
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < taskList.size(); i++) {
+            String[] tokens = taskList.get(i).getDescription().split(" ");
+            boolean containsWord = false;
+            for (String token:tokens) {
+                if (token.compareToIgnoreCase(keyword) == 0) {
+                    containsWord = true;
+                }
+            }
+
+            if (containsWord) {
+                System.out.println(i+1 + ". " + taskList.get(i).toString());
+            }
         }
         System.out.println(horizontalLine);
     }
