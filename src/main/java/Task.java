@@ -70,9 +70,6 @@ public class Task {
         return (isCompleted?"1":"0") + "|" + description;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
 
 

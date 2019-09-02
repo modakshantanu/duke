@@ -1,8 +1,9 @@
+T|0| a
+T|0| b
 D|0| a | b
 E|0| b | c
+T|0| a
+T|0|   \\\ 
 E|0| abc | 1234
+T|0| s
 E|0| e | 3/4/5 2343
-T|0| abc
-T|0| read book
-T|0| return book
-E|0| book book | df
