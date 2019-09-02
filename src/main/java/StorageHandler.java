@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -51,6 +55,13 @@ public class StorageHandler {
             writer.close();
         } catch (IOException e){
             System.out.println("Error while writing file");
+            e.printStackTrace();
+        }
+    }
+    void addTask(Task task) {
+        try {
+            Files.write(Paths.get(path),task.toStorageString().getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -37,7 +37,7 @@ public class Duke {
                 return;
             } else if (input.startsWith("list")) {
                 printList();
-            } else if (input.startsWith("done")) {
+            } else if (input.startsWith("done") || input.startsWith("delete")) {
                 // parse the input string and get the index of the task that needs to be marked done
                 int doneIndex;
                 try {
@@ -51,6 +51,11 @@ public class Duke {
                 // error handling if the index is not in the array
                 if (doneIndex < 0 || doneIndex >= taskList.size()) {
                     printFormattedLine("That task doesn't exist");
+                    continue;
+                }
+
+                if (input.startsWith("delete")) {
+                    removeTask(doneIndex);
                     continue;
                 }
 
@@ -68,6 +73,7 @@ public class Duke {
                     continue;
                 }
                 addItem(new Todo(desc));
+
             } else if (input.startsWith("deadline")) {
                 String temp  = input.substring(8);
                 String[] tokens = temp.split("/by");
@@ -76,7 +82,6 @@ public class Duke {
                     continue;
                 }
                 addItem(new Deadline(tokens[0],tokens[1]));
-
             } else if (input.startsWith("event") ) {
                 String temp  = input.substring(5);
                 String[] tokens = temp.split("/at");
@@ -88,7 +93,7 @@ public class Duke {
             }  else { // only add non-empty strings
                 System.out.println("Invalid command");
             }
-            storage.saveData(taskList);
+
 
         }
 
@@ -104,7 +109,18 @@ public class Duke {
 
     private static void addItem(Task item) {
         taskList.add(item);
+        storage.addTask(item);
         printFormattedLine("added: " + item);
+
+    }
+
+    private static void removeTask(int index) {
+
+
+
+        taskList.remove(index);
+        storage.saveData(taskList);
+        printFormattedLine("Task " + ++index + " deleted");
 
     }
 
