@@ -1,0 +1,24 @@
+list
+todo abcd1234
+list
+delete 1
+deadline dddddd /by ffffff
+deadline dddddd /by ffffff
+event abcd /at 1234
+todo word one
+todo word two
+todo word 3
+asdasdf
+todo
+deadline asldkfjasldkfj
+deadline sfsdsdkf /by
+deadline /by
+event /at
+event a /at b
+event /at b
+event a /at
+list
+delete 1
+delete 1
+list
+bye
