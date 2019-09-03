@@ -3,8 +3,6 @@ import Commands.Command;
 public class Parser {
 
     public Command parseLine(String line, int listSize) {
-
-
         // remove all | characters from input
         line = line.replace("|","")
                 .trim(); // remove leading and trailing spaces

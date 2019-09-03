@@ -1,4 +1,7 @@
-package Commands;
+package duke;
 
 public class AddCommand {
+
+
+
 }

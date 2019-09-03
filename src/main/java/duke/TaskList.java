@@ -26,6 +26,20 @@ public class TaskList {
         }
         return temp;
     }
+    public ArrayList<String> filterToStringArray(String word) {
+        ArrayList<String> temp = new ArrayList<>();
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = taskList.get(i);
+            String[] tokens = task.toString().split(" ");
+            for (String token: tokens) {
+                if (token.equalsIgnoreCase(word)) {
+                    temp.add(i+1 + ". " + task.toString());
+                    break;
+                }
+            }
+        }
+        return temp;
+    }
 
     public int size() {
         return taskList.size();

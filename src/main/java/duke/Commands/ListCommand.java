@@ -1,7 +1,6 @@
 package Commands;
 
 
-
 public class ListCommand implements Command {
 
 

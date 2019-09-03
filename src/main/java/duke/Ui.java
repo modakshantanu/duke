@@ -4,21 +4,20 @@ public class Ui {
 
     private final String horizLine = "____________________________________________________________";
 
-    void printHorizLine() {
+    public void printHorizLine() {
         System.out.println(horizLine);
     }
-    void printLines(String ... strings) {
+    public void printLines(String ...strings) {
         System.out.println(horizLine);
         for (String s: strings) {
             System.out.println(s);
         }
         System.out.println(horizLine);
     }
-
-    void printTasks(ArrayList<Task> tasks) {
-        System.out.println(horizLine);
-
-
+    public void printUnformattedLines(String ...strings) {
+        for (String s: strings) {
+            System.out.println(s);
+        }
     }
 
 }
