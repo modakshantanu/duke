@@ -1,23 +1,25 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.regex.*;
 
 public class Duke {
 
     private static final String horizontalLine = "____________________________________________________________";
-    private static ArrayList<Task> taskList = new ArrayList<Task>();
+   // private static ArrayList<Task> taskList = new ArrayList<Task>();
+    private static TaskList taskList = new TaskList();
+
     private static StorageHandler storage;
+
 
     public static void main(String[] args) {
 
         storage = new StorageHandler();
-        taskList = storage.getData();
+        taskList.setTaskList(storage.getData());
+
+
         String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+                    + "|  _ \\ _   _| | _____ \n"
+                    + "| | | | | | | |/ / _ \\\n"
+                    + "| |_| | |_| |   <  __/\n"
+                    + "|____/ \\__,_|_|\\_\\___|\n";
 
         System.out.println("Hello from\n" + logo);
         Scanner scanner = new Scanner(System.in);
@@ -55,15 +57,15 @@ public class Duke {
                 }
 
                 if (input.startsWith("delete")) {
-                    removeTask(doneIndex);
+                    deleteTask(doneIndex);
                     continue;
                 }
 
-                taskList.get(doneIndex).setCompleted(true);
+                taskList.getByIndex(doneIndex).setCompleted(true);
 
                 System.out.println(horizontalLine);
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println(taskList.get(doneIndex).toString());
+                System.out.println(taskList.getByIndex(doneIndex).toString());
                 System.out.println(horizontalLine);
 
             } else if (input.startsWith("todo")) {
@@ -108,18 +110,18 @@ public class Duke {
     }
 
     private static void addItem(Task item) {
-        taskList.add(item);
+        taskList.addTask(item);
         storage.addTask(item);
         printFormattedLine("added: " + item);
 
     }
 
-    private static void removeTask(int index) {
+    private static void deleteTask(int index) {
 
 
 
-        taskList.remove(index);
-        storage.saveData(taskList);
+        taskList.deleteTask(index);
+        storage.saveData(taskList.getTaskList());
         printFormattedLine("Task " + ++index + " deleted");
 
     }
@@ -129,7 +131,7 @@ public class Duke {
 
         // Print each element of list with numbering
         for (int i = 0; i < taskList.size(); i++) {
-            System.out.println(i+1 + ". " + taskList.get(i).toString());
+            System.out.println(i+1 + ". " + taskList.getByIndex(i).toString());
         }
         System.out.println(horizontalLine);
     }
