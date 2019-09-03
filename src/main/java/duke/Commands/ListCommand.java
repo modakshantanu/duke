@@ -1,11 +1,4 @@
-package Commands;
+package duke.Commands;
 
-
-public class ListCommand implements Command {
-
-
-    @Override
-    public void execute() {
-
-    }
+public class ListCommand {
 }
