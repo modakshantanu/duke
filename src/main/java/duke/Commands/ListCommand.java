@@ -1,4 +1,13 @@
 package duke.Commands;
 
-public class ListCommand {
+import duke.StorageHandler;
+import duke.TaskList;
+import duke.Ui;
+
+public class ListCommand extends Command {
+    @Override
+    public void execute(Ui ui, TaskList taskList, StorageHandler storageHandler) {
+        ui.printLines(taskList.filterToStringArray(""));
+    }
+
 }

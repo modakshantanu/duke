@@ -1,6 +1,7 @@
+package duke;
+
 public enum CommandType {
     INVALID,
-    ADD,
     DELETE,
     LIST,
     DONE,

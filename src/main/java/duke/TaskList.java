@@ -1,7 +1,10 @@
+package duke;
+
+import duke.Tasks.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
-
 
     private ArrayList<Task> taskList = new ArrayList<Task>();
 
@@ -9,8 +12,8 @@ public class TaskList {
         taskList.add(t);
     }
 
-    public void deleteTask(int index) {
-        taskList.remove(index);
+    public Task deleteTask(int index) {
+        return taskList.remove(index);
     }
 
     public ArrayList<Task> filterByKeyword(String word) {
@@ -26,19 +29,24 @@ public class TaskList {
         }
         return temp;
     }
-    public ArrayList<String> filterToStringArray(String word) {
+    public String[] filterToStringArray(String word) {
         ArrayList<String> temp = new ArrayList<>();
         for (int i = 0; i < taskList.size(); i++) {
             Task task = taskList.get(i);
             String[] tokens = task.toString().split(" ");
             for (String token: tokens) {
-                if (token.equalsIgnoreCase(word)) {
+                if (token.equalsIgnoreCase(word) || word.isBlank()) {
                     temp.add(i+1 + ". " + task.toString());
                     break;
                 }
             }
         }
-        return temp;
+        return temp.toArray(new String[0]);
+    }
+
+
+    public void setCompleted(int index, boolean isCompleted) {
+        taskList.get(index).setCompleted(isCompleted);
     }
 
     public int size() {

@@ -1,4 +1,4 @@
-package duke;
+package duke.Tasks;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ public class Event extends Task{
     private String dueDateString = "";
     private Date dueDate = null; // Used if the date given is in date format
 
-    Event(String description, String dueDate) {
+    public Event(String description, String dueDate) {
         super(description);
         this.dueDateString = dueDate;
         this.dueDate = Task.parseDateString(dueDateString);

@@ -1,4 +1,4 @@
-package duke;
+package duke.Tasks;
 
 import java.util.Date;
 
@@ -7,7 +7,7 @@ public class Deadline extends Task{
 
     private String dueDateString = "";
     private Date dueDate = null;
-    Deadline(String description,String dueDate) {
+    public Deadline(String description, String dueDate) {
         super(description);
         this.dueDateString = dueDate;
         this.dueDate = parseDateString(dueDateString);

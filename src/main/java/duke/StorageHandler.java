@@ -1,3 +1,6 @@
+package duke;
+
+import duke.Tasks.Task;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,9 +15,10 @@ import java.util.Scanner;
 
 public class StorageHandler {
 
-    private String path = "data.txt";
+    private String path;
     private File file;
-    StorageHandler() {
+    StorageHandler(String path) {
+        this.path = path;
         file = new File(path);
         try {
             file.createNewFile();
@@ -57,7 +61,7 @@ public class StorageHandler {
             e.printStackTrace();
         }
     }
-    void addTask(Task task) {
+    public void addTask(Task task) {
         try {
             Files.write(Paths.get(path),task.toStorageString().getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
