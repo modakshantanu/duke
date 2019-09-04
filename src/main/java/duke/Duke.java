@@ -2,15 +2,15 @@ package duke;
 
 
 import duke.Commands.Command;
-import duke.Tasks.Deadline;
-import duke.Tasks.Event;
-import duke.Tasks.Task;
-import duke.Tasks.Todo;
-
 import java.util.Scanner;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
-public class Duke {
+public class Duke extends Application{
 
     private static final String horizontalLine = "____________________________________________________________";
    // private static ArrayList<duke.Tasks.Task> taskList = new ArrayList<duke.Tasks.Task>();
@@ -40,4 +40,14 @@ public class Duke {
         }
     }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        helloWorld.setFont(new Font(50));
+        Scene scene = new Scene(helloWorld,200,200); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
+
+    }
 }
