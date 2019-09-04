@@ -2,19 +2,28 @@ package duke;
 
 
 import duke.Commands.Command;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 
 
@@ -25,6 +34,8 @@ public class Duke extends Application{
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+    private Image user;
+    private Image duke;
 
 
     private static final String horizontalLine = "____________________________________________________________";
@@ -57,6 +68,16 @@ public class Duke extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
+
+
+        try {
+            user = new Image(new FileInputStream("src/main/resources/images/DaUser.png"));
+            duke = new Image(new FileInputStream("src/main/resources/images/DaDuke.png"));
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
@@ -96,6 +117,8 @@ public class Duke extends Application{
         userInput.setPrefWidth(325.0);
         sendButton.setPrefWidth(55.0);
 
+
+        // value is the pixels offset
         AnchorPane.setTopAnchor(scrollPane, 1.0);
 
         AnchorPane.setBottomAnchor(sendButton, 1.0);
@@ -105,5 +128,38 @@ public class Duke extends Application{
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
 
+        //Step 3. Add functionality to handle user input.
+
+        // Button clicked
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+
+
+        // Default onAction for textInput is pressing Enter
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
+
+        //Scroll down to the end every time dialogContainer's height changes.
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
     }
+
+
+
+    private void handleUserInput() {
+        String userText = userInput.getText();
+        String dukeText = getResponse(userInput.getText());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(userText, user),
+                DialogBox.getDukeDialog(dukeText, duke)
+        );
+        userInput.clear();
+    }
+
+    String getResponse(String input) {
+        return "duke.Duke heard: " + input;
+    }
+
+
 }
