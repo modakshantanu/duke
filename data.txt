@@ -2,4 +2,4 @@ D|0| a | b
 E|1| b | c
 E|1|asd | sad
 T|0|sfasdfg sdfsdf 33     fdasf a
-T|0|2E|0|sdfs | sdfs
+T|1|as fsd

@@ -19,10 +19,7 @@ public class Duke {
     private static Ui ui = new Ui();
     private static Parser parser = new Parser();
 
-
-    public static void main(String[] args) {
-
-
+    public void run() {
         taskList.setTaskList(storage.getData());
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -38,6 +35,10 @@ public class Duke {
             c.execute(ui, taskList, storage);
             if (c.isBye) {  return;  }
         }
+    }
+
+    public static void main(String[] args) {
+        new Duke().run();
     }
 
 }

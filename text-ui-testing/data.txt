@@ -1,5 +1,0 @@
-E|0| abcd | 1234
-T|0| word one
-T|0| word two
-T|0| word 3
-E|0| a | b
