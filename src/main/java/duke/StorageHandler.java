@@ -13,10 +13,18 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles the storing of data in a text file
+ */
 public class StorageHandler {
 
     private String path;
     private File file;
+
+    /**
+     *
+     * @param path The path + name of the text file to store the data
+     */
     StorageHandler(String path) {
         this.path = path;
         file = new File(path);
@@ -27,6 +35,10 @@ public class StorageHandler {
         }
     }
 
+    /**
+     * get the data stored in the text file
+     * @return An ArrayList containing all the tasks
+     */
     public ArrayList<Task> getData() {
         ArrayList<Task> array = new ArrayList<Task>();
         try {
@@ -49,6 +61,11 @@ public class StorageHandler {
 
     }
 
+    /**
+     * Saves the data passed into the text file
+     * Overwrites and old data in the text file
+     * @param data The ArrayList of tasks to be saved
+     */
     public void saveData(ArrayList<Task> data) {
         try {
             FileWriter writer = new FileWriter(path);
@@ -61,6 +78,11 @@ public class StorageHandler {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Appends the new task data to the end of the text file
+     * @param task The new task to be added
+     */
     public void addTask(Task task) {
         try {
             Files.write(Paths.get(path),task.toStorageString().getBytes(), StandardOpenOption.APPEND);

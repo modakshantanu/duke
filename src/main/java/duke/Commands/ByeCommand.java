@@ -4,6 +4,9 @@ import duke.StorageHandler;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Command to indicate that the user wishes to exit
+ */
 public class ByeCommand extends Command {
 
     public ByeCommand() {

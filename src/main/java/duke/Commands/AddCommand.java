@@ -9,13 +9,21 @@ import duke.Tasks.Task;
 import duke.Tasks.Todo;
 import duke.Ui;
 
-
+/**
+ * Command to Add a Task
+ */
 public class AddCommand extends Command {
 
     private CommandType type = CommandType.INVALID;
     private String description = "";
     private String date = "";
 
+    /**
+     *
+     * @param type The type of Task
+     * @param tokens 1st element - the description of the task
+     *               2nd optional element - The date (for Events and Deadlines)
+     */
     public AddCommand(CommandType type, String ...tokens) {
         this.type = type;
         this.description = tokens[0];

@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Parent class of all types of Tasks stored in the task list
+ */
 public class Task {
 
 
@@ -15,6 +18,11 @@ public class Task {
         this.description = description;
     }
 
+    /**
+     * Converts a line from the text storage file to the correct task object
+     * @param s The line in the storage file
+     * @return The correct Task/child class object for that line
+     */
     public static Task parseStorageString(String s) {
         String[] tokens = s.split("\\|");
 
@@ -43,6 +51,11 @@ public class Task {
 
     }
 
+    /**
+     *
+     * @param dateString The string inputted by the user as a date
+     * @return The Date object
+     */
     static Date parseDateString(String dateString) {
         String[] formats = {"d/M/y HHmm"};
         for (String format : formats) {
@@ -54,6 +67,10 @@ public class Task {
         return null;
     }
 
+    /**
+     *
+     * @return A string representation of the Task for display to the user
+     */
     public String toString() {
         String message = description;
         if (isCompleted) {
@@ -68,6 +85,10 @@ public class Task {
         isCompleted = completed;
     }
 
+    /**
+     *
+     * @return A string representation of the Task for putting in the storage file
+     */
     public String toStorageString() {
         return (isCompleted?"1":"0") + "|" + description;
     }

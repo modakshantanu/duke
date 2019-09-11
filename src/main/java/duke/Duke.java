@@ -9,7 +9,10 @@ import duke.Tasks.Todo;
 
 import java.util.Scanner;
 
-
+/**
+ * The main duke class
+ * To start the program, instantiate a duke object and call .run()
+ */
 public class Duke {
 
     private static final String horizontalLine = "____________________________________________________________";
@@ -19,6 +22,9 @@ public class Duke {
     private static Ui ui = new Ui();
     private static Parser parser = new Parser();
 
+    /**
+     * Starts the program
+     */
     public void run() {
         taskList.setTaskList(storage.getData());
         Scanner scanner = new Scanner(System.in);

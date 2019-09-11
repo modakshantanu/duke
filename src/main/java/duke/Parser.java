@@ -2,8 +2,19 @@ package duke;
 
 import duke.Commands.*;
 
+/**
+ * Class that handles all parsing of user input
+ */
 public class Parser {
 
+    /**
+     * Parses one line of input text and returns the corresponding Command object
+     *
+     *
+     * @param line A single line String of user input (not necessary valid)
+     * @param listSize The size of the task list of the program
+     * @return The command that needs to be executed in response
+     */
     public Command parseLine(String line, int listSize) {
 
         // remove all | characters from input
